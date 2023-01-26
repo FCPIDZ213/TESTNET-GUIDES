@@ -56,9 +56,11 @@ planqd keys add <walletname> --recover
 wget https://raw.githubusercontent.com/planq-network/networks/main/mainnet/genesis.json
 mv genesis.json ~/.planqd/config/
 ```
-## Set up the minimum gas price and Peers/Seeds/Filter peers/MaxPeers
+## Set up the minimum gas price and Peers/Seeds
 ```python
- SEEDS="dd2f0ceaa0b21491ecae17413b242d69916550ae@135.125.247.70:26656,0525de7e7640008d2a2e01d1a7f6456f28f3324c@51.79.142.6:26656,21432722b67540f6b366806dff295849738d7865@139.99.223.241:26656" 
+### Set minimum gas price , seeds , and peers
+```
+SEEDS="dd2f0ceaa0b21491ecae17413b242d69916550ae@135.125.247.70:26656,0525de7e7640008d2a2e01d1a7f6456f28f3324c@51.79.142.6:26656,21432722b67540f6b366806dff295849738d7865@139.99.223.241:26656" 
 PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.planqd/config/config.toml
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.025aplanq\"|" $HOME/.planqd/config/app.toml
