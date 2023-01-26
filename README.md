@@ -37,4 +37,11 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile &
 source $HOME/.bash_profile && \
 go version
 ```
+# Build 14.01.23
+```python
+git clone https://github.com/planq-network/planq.git
+cd planq
+git fetch
+git checkout v1.0.3
+make install
  
