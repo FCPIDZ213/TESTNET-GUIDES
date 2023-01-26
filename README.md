@@ -126,3 +126,129 @@ planqd tx staking create-validator \
   --details="" \
   --website="" -y
   ```
+## Usefull commands
+### Service management
+Check logs
+```python
+journalctl -fu planqd -o cat
+```
+
+Start service
+```python
+sudo systemctl start planqd
+```
+
+Stop service
+```python
+sudo systemctl stop planqd
+```
+
+Restart service
+```python
+sudo systemctl restart planqd
+```
+
+### Node info
+Synchronization info
+```python
+planqd status 2>&1 | jq .SyncInfo
+```
+
+Validator info
+```python
+planqd status 2>&1 | jq .ValidatorInfo
+```
+
+Node info
+```python
+planqd status 2>&1 | jq .NodeInfo
+```
+
+Show node id
+```python
+planqd tendermint show-node-id
+```
+
+### Wallet operations
+List of wallets
+```python
+planqd keys list
+```
+
+Recover wallet
+```python
+planqd keys add wallet --recover
+```
+
+Delete wallet
+```python
+planqd keys delete wallet
+```
+
+Get wallet balance
+```python
+planqd query bank balances <address>
+```
+
+Transfer funds
+```python
+planqd tx bank send <FROM ADDRESS> <TO_planq_WALLET_ADDRESS> 10000000aplanq
+```
+
+### Voting
+```python
+planqd tx gov vote 1 yes --from wallet --chain-id=planq_7070-2
+```
+
+### Staking, Delegation and Rewards
+Delegate stake
+```python
+planqd tx staking delegate <planq valoper> 10000000aplanq --from=wallet --chain-id=planq_7070-2 --gas=auto
+```
+
+Redelegate stake from validator to another validator
+```python
+planqd tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000aplanq --from=wallet --chain-id=planq_7070-2 --gas=auto
+```
+
+Withdraw all rewards
+```python
+planqd tx distribution withdraw-all-rewards --from=wallet --chain-id=planq_7070-2 --gas=auto
+```
+
+Withdraw rewards with commision
+```python
+planqd tx distribution withdraw-rewards <planq valoper> --from=wallet --commission --chain-id=planq_7070-2
+```
+
+### Validator management
+Edit validator
+```python
+planqd tx staking edit-validator \
+  --moniker=$MONIKER \
+  --identity=<your_keybase_id> \
+  --website="<your_website>" \
+  --details="<your_validator_description>" \
+  --chain-id=planq_7070-2 \
+  --from=wallet
+```
+
+Unjail validator
+```python
+planqd tx slashing unjail \
+  --broadcast-mode=block \
+  --from=wallet \
+  --chain-id=planq_7070-2 \
+  --gas=auto
+```
+
+### Delete node
+```python
+sudo systemctl stop planqd && \
+sudo systemctl disable planqd && \
+rm /etc/systemd/system/planqd.service && \
+sudo systemctl daemon-reload && \
+cd $HOME && \
+rm -rf .planqd && \
+rm -rf $(which planqd)
+```
