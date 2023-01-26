@@ -1,6 +1,6 @@
 
 <p align="center">
-# Node Installation Manuals
+GUIDE INSTALLATION FOR NODES
 
 
 
