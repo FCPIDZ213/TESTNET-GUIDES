@@ -100,3 +100,9 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+## Start
+```python
+sudo systemctl daemon-reload
+sudo systemctl enable planqd
+sudo systemctl restart planqd && sudo journalctl -u planqd -f -o cat
+```
