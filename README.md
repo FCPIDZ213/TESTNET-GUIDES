@@ -45,7 +45,11 @@ git fetch
 git checkout v1.0.3
 make install
 ```
- 
+ ## Initialisation
+```python
+planqd init <your Moniker name> --chain-id=planq_7070-2
+planqd config chain-id planq_7070-2
+``` 
 ## Create/recover wallet
 ```python
 planqd keys add <walletname>
