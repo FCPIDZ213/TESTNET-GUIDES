@@ -11,3 +11,9 @@
 
 # Explorer
 ### [Explorer](https://explorer.dz-staking.com/planq/staking/plqvaloper1rakhw504djts8xw64g38qzayzwhec4seuajy2g)
+
+- **Minimum hardware requirements**:
+
+| Node Type |CPU | RAM  | Storage  | 
+|-----------|----|------|----------|
+| Tetsnet   |   4|  8GB | 500GB    |
