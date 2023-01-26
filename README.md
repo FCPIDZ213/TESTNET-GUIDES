@@ -7,7 +7,7 @@
 
 # Official Links
 ### [Official Document](https://docs.planq.network/validators/overview.html)
-### [Planq Official Discord](https://discord.gg/cwmR8jNrNp)
+### [Planq Official Discord](https://discord.gg/planq-network)
 
 # Explorer
 ### [Explorer](https://explorer.dz-staking.com/planq/staking/plqvaloper1rakhw504djts8xw64g38qzayzwhec4seuajy2g)
