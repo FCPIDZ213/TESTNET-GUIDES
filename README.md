@@ -45,3 +45,7 @@ git fetch
 git checkout v1.0.3
 make install
  
+## Create/recover wallet
+```python
+planqd keys add <walletname>
+planqd keys add <walletname> --recover
