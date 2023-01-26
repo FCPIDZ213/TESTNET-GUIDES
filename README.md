@@ -51,3 +51,8 @@ make install
 planqd keys add <walletname>
 planqd keys add <walletname> --recover
 ```
+## Download Genesis
+```python
+wget https://raw.githubusercontent.com/planq-network/networks/main/mainnet/genesis.json
+mv genesis.json ~/.planqd/config/
+```
