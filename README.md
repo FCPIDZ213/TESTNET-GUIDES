@@ -1,10 +1,10 @@
 
-                                             # NODES GUIDE INSTALLATION 
 
 
 
 
 <p style="font-size:14px" align="right">
+  # NODES GUIDE INSTALLATION 
 
 
 <p align="center">
