@@ -11,4 +11,4 @@
 ### [Planq Official Discord](https://discord.gg/cwmR8jNrNp)
 
 # Explorer
-### [Explorer]([https://explorer.dz-staking.com/planq)
+### [Explorer](https://explorer.dz-staking.com/planq/staking/plqvaloper1rakhw504djts8xw64g38qzayzwhec4seuajy2g)
