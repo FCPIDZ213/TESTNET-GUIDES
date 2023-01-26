@@ -109,3 +109,18 @@ sudo systemctl restart planqd && sudo journalctl -u planqd -f -o cat
 ### Create validator
 ```python
  
+planqd tx staking create-validator \
+  --amount=1000000000000aplanq \
+  --pubkey=$(planqd tendermint show-validator) \
+  --moniker=<your Moniker name> \
+  --chain-id=planq_7070-2 \
+  --commission-rate="0.05" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.01" \
+  --min-self-delegation="1000000" \
+  --gas="1000000" \
+  --gas-prices="30000000000aplanq" \
+  --gas-adjustment="1.15" \
+  --from=<walletName> \
+  -y
+  ```
