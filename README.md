@@ -106,3 +106,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable planqd
 sudo systemctl restart planqd && sudo journalctl -u planqd -f -o cat
 ```
+### Create validator
+```python
+ 
