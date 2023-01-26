@@ -82,3 +82,21 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.planqd/config/config.toml
 ```
+# Create a service file
+```python
+sudo tee /etc/systemd/system/planqd.service > /dev/null <<EOF
+[Unit]
+Description=planq
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which planqd) start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
