@@ -49,3 +49,4 @@ make install
 ```python
 planqd keys add <walletname>
 planqd keys add <walletname> --recover
+```
