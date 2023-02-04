@@ -51,4 +51,206 @@ babylond config chain-id bbn-test-1
 babylond keys add <walletname>
 babylond keys add <walletname> --recover
 ```
+ ## Download Genesis
+```python
+# wget https://github.com/babylonchain/networks/blob/init/bbn-test-1/bbn-test-1/genesis.tar.bz2
+# tar -xjf genesis.tar.bz2
+# rm genesis.tar.bz2
+# mv genesis.json ~/.babylond/config/genesis.json
+```
+## Set up the minimum gas price and Peers/Seeds
+```python
+#SEEDS="dd2f0ceaa0b21491ecae17413b242d69916550ae@135.125.247.70:26656,0525de7e7640008d2a2e01d1a7f6456f28f3324c@51.79.142.6:26656,214327#22b67540f6b366806dff295849738d7865@139.99.223.241:26656" 
+#PEERS=""
+#sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.babylond/config/config.toml
+#sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.025ubbn\"|" $HOME/.babylond/config/app.toml
+#sed -i -e "s/^timeout_commit *=.*/timeout_commit = \"5s\"/" $HOME/.babylond/config/config.toml
+#sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 120/g' $HOME/.babylond/config/config.toml
+#sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 60/g' $HOME/.babylond/config/config.toml
+```
+### Pruning (Optional)
+```python
+pruning="custom"
+pruning_keep_recent="100"
+pruning_keep_every="0"
+pruning_interval="10"
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.babylond/config/app.toml
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.babylond/config/app.toml
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.babylond/config/app.toml
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.babylond/config/app.toml
+```
+ ### Indexer (Optional)
+```python
+indexer="null" && \
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.babylond/config/config.toml
+```
+# Create a service file
+```python
+sudo tee /etc/systemd/system/babylond.service > /dev/null <<EOF
+[Unit]
+Description=babylon
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which babylond) start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+## Start
+```python
+sudo systemctl daemon-reload
+sudo systemctl enable babylond
+sudo systemctl restart babylond && sudo journalctl -u planqd -f -o cat
+```
+### Create validator
+```python
  
+babylond tx staking create-validator \
+  --amount=10000000ubbn \
+  --moniker=<your Moniker name> \
+  --from=<walletName> \
+  --commission-rate="0.05" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.01" \
+  --min-self-delegation="1" \
+  --pubkey=$(babylond tendermint show-validator) \
+  --gas="1000000" \
+  --gas-prices="0.0025ubbn" \
+  --gas-adjustment="1.2" \
+  --chain-id=bbn-test-1 \
+  --identity="" \
+  --details="" \
+  --website="" -y
+  ```
+## Usefull commands
+### Service management
+Check logs
+```python
+journalctl -fu babylond -o cat
+```
+
+Start service
+```python
+sudo systemctl start babylond
+```
+
+Stop service
+```python
+sudo systemctl stop babylond
+```
+
+Restart service
+```python
+sudo systemctl restart babylond
+```
+
+### Node info
+Synchronization info
+```python
+babylond status 2>&1 | jq .SyncInfo
+```
+
+Validator info
+```python
+babylond status 2>&1 | jq .ValidatorInfo
+```
+
+Node info
+```python
+babylond status 2>&1 | jq .NodeInfo
+```
+
+Show node id
+```python
+babylond tendermint show-node-id
+```
+
+### Wallet operations
+List of wallets
+```python
+babylond keys list
+```
+
+Recover wallet
+```python
+babylond keys add wallet --recover
+```
+
+Delete wallet
+```python
+babylond keys delete wallet
+```
+
+Get wallet balance
+```python
+babylond query bank balances <address>
+```
+
+Transfer funds
+```python
+babylond tx bank send <FROM ADDRESS> <TO_BABYLON_WALLET_ADDRESS> 10000000ubbn
+```
+
+### Voting
+```python
+babylond tx gov vote 1 yes --from wallet --chain-id=bbn-test-1
+```
+
+### Staking, Delegation and Rewards
+Delegate stake
+```python
+babylond tx staking delegate <babylond valoper> 10000000ubbn --from=wallet --chain-id=bbn-test-1 --gas=auto
+```
+
+Redelegate stake from validator to another validator
+```python
+babylond tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 10000000ubbn --from=wallet --chain-id=bbn-test-1--gas=auto
+```
+
+Withdraw all rewards
+```python
+babylond tx distribution withdraw-all-rewards --from=wallet --chain-id=bbn-test-1 --gas=auto
+```
+
+Withdraw rewards with commision
+```python
+babylond tx distribution withdraw-rewards <babylond valoper> --from=wallet --commission --chain-id=bbn-test-1
+```
+
+### Validator management
+Edit validator
+```python
+babylond tx staking edit-validator \
+  --moniker=$MONIKER \
+  --identity=<your_keybase_id> \
+  --website="<your_website>" \
+  --details="<your_validator_description>" \
+  --chain-id=bbn-test-1 \
+  --from=wallet
+```
+
+Unjail validator
+```python
+babylond tx slashing unjail \
+  --broadcast-mode=block \
+  --from=wallet \
+  --chain-id=bbn-test-1 \
+  --gas=auto
+```
+
+### Delete node
+```python
+sudo systemctl stop babylond && \
+sudo systemctl disable babylond && \
+rm /etc/systemd/system/babylond.service && \
+sudo systemctl daemon-reload && \
+cd $HOME && \
+rm -rf .babylond && \
+rm -rf $(which babylond)
+```
