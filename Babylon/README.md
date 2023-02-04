@@ -53,20 +53,11 @@ babylond keys add <walletname> --recover
 ```
  ## Download Genesis
 ```python
-# wget https://github.com/babylonchain/networks/blob/init/bbn-test-1/bbn-test-1/genesis.tar.bz2
-# tar -xjf genesis.tar.bz2
-# rm genesis.tar.bz2
-# mv genesis.json ~/.babylond/config/genesis.json
+coming soon
 ```
 ## Set up the minimum gas price and Peers/Seeds
 ```python
-#SEEDS="dd2f0ceaa0b21491ecae17413b242d69916550ae@135.125.247.70:26656,0525de7e7640008d2a2e01d1a7f6456f28f3324c@51.79.142.6:26656,214327#22b67540f6b366806dff295849738d7865@139.99.223.241:26656" 
-#PEERS=""
-#sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.babylond/config/config.toml
-#sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.025ubbn\"|" $HOME/.babylond/config/app.toml
-#sed -i -e "s/^timeout_commit *=.*/timeout_commit = \"5s\"/" $HOME/.babylond/config/config.toml
-#sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 120/g' $HOME/.babylond/config/config.toml
-#sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 60/g' $HOME/.babylond/config/config.toml
+coming soon
 ```
 ### Pruning (Optional)
 ```python
