@@ -97,7 +97,7 @@ EOF
 ```python
 sudo systemctl daemon-reload
 sudo systemctl enable babylond
-sudo systemctl restart babylond && sudo journalctl -u planqd -f -o cat
+sudo systemctl restart babylond && sudo journalctl -u babylond -f -o cat
 ```
 ### Create validator
 ```python
