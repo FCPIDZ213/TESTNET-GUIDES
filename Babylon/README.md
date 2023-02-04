@@ -33,3 +33,22 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile &
 source $HOME/.bash_profile && \
 go version
 ```
+# Build 
+```python
+cd $HOME
+git clone https://github.com/babylonchain/babylon.git
+cd babylon
+git checkout v0.4.0
+make install
+```
+  ## Initialisation
+```python
+babylond init <your Moniker name> --chain-id bbn-test-1
+babylond config chain-id bbn-test-1
+``` 
+## Create/recover wallet
+```python
+babylond keys add <walletname>
+babylond keys add <walletname> --recover
+```
+ 
