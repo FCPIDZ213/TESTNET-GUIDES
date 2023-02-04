@@ -111,7 +111,7 @@ babylond tx staking create-validator \
   --commission-max-change-rate="0.01" \
   --min-self-delegation="1" \
   --pubkey=$(babylond tendermint show-validator) \
-  --gas="1000000" \
+  --gas="auto" \
   --gas-prices="0.0025ubbn" \
   --gas-adjustment="1.2" \
   --chain-id=bbn-test-1 \
