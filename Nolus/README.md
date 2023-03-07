@@ -16,7 +16,7 @@
 
 | Node Type |CPU | RAM  | Storage  | 
 |-----------|----|------|----------|
-| Tetsnet   |   4|  8GB | 150GB    |
+| Tetsnet   |   2|  4GB | 150GB    |
 
  ### Preparing the server
 
