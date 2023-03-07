@@ -6,17 +6,17 @@
 
 
 # Official Links
-### [Official Document](https://docs.babylonchain.io/docs/installation)
-### [Babylon Official Discord](https://discord.gg/babylonchain)
+### [Official Document] (https://docs-nolus-protocol.notion.site/Run-a-Full-Node-7a92545223e7483bb4a02cce30b53aa8)
+### [Babylon Official Discord](https://discord.gg/nolus-protocol)
 
 # Explorer
-### [Explorer](https://explorer.dz-staking.com/planq/staking/plqvaloper1rakhw504djts8xw64g38qzayzwhec4seuajy2g)
+### [Explorer](https://explorer-rila.nolus.io/nolus-rila)
 
 - **Minimum hardware requirements**:
 
 | Node Type |CPU | RAM  | Storage  | 
 |-----------|----|------|----------|
-| Tetsnet   |   4|  8GB | 500GB    |
+| Tetsnet   |   4|  8GB | 150GB    |
 
  ### Preparing the server
 
