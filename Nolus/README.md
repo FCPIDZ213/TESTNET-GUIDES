@@ -110,14 +110,14 @@ sudo systemctl daemon-reload
 sudo systemctl enable nolusd
 sudo systemctl restart nolusd && sudo journalctl -u nolusd -f -o cat
 ```
- ## SnapShot (~0.1 GB) updated every 5 hours
+ ## SnapShot 07/03/2023
 ```python
 sudo systemctl stop nolusd
 cp $HOME/.nolus/data/priv_validator_state.json $HOME/.nolus/priv_validator_state.json.backup
 rm -rf $HOME/.nolus/data
 curl -L https://snap.dz-staking.com/nolus.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.nolus
 mv $HOME/.nolus/priv_validator_state.json.backup $HOME/.nolus/data/priv_validator_state.json
-sudo systemctl start nolusd && sudo journalctl -u nolusd -f --no-hostname -o cat
+sudo systemctl start nolusd && sudo journalctl -u nolusd -f -o cat
 ```
  
 ### Create validator
