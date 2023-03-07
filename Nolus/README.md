@@ -40,24 +40,24 @@ go version
 # Build 
 ```python
 cd $HOME
-git clone https://github.com/babylonchain/babylon.git
-cd babylon
-git checkout v0.5.0
+git clone https://github.com/Nolus-Protocol/nolus-core.git
+cd nolus-core
+git checkout v0.1.43
 make install
 ```
  ## Initialisation
 ```python
-babylond init  <your Moniker name> --chain-id bbn-test-1
-babylond config chain-id bbn-test-1
+nolusd init  <your Moniker name> --chain-id nolus-rila
+nolusd config chain-id nolus-rila
 ``` 
 ## Create/recover wallet
 ```python
-babylond keys add <walletname>
-babylond keys add <walletname> --recover
+nolusd keys add <walletname>
+nolusd keys add <walletname> --recover
 ```
 ## Download Genesis
 ```python
-coming soon
+wget -O $HOME/.nolus/config/genesis.json "https://raw.githubusercontent.com/Nolus-Protocol/nolus-networks/main/testnet/nolus-rila/genesis.json"
 ```
 ## Set up the minimum gas price and Peers/Seeds
 ```python
