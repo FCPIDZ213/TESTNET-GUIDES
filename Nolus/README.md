@@ -55,9 +55,10 @@ nolusd config chain-id nolus-rila
 nolusd keys add <walletname>
 nolusd keys add <walletname> --recover
 ```
-## Download Genesis
+## Download genesis file and addrbook
 ```python
 wget -O $HOME/.nolus/config/genesis.json "https://raw.githubusercontent.com/Nolus-Protocol/nolus-networks/main/testnet/nolus-rila/genesis.json"
+wget -O $HOME/.nolus/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Nolus/addrbook.json"
 ```
 ## Set up the minimum gas price and Peers/Seeds
 ```python
@@ -81,11 +82,7 @@ sed -i -e "s/^pruning *=.*/pruning = \"nothing\"/" $HOME/.nolus/config/app.toml
 indexer="null" && \
 sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.nolus/config/config.toml
 ```
-## Download addrbook
-```python
-wget -O $HOME/.nolus/config/addrbook.json "https://raw.githubusercontent.com/obajay/nodes-Guides/main/Nolus/addrbook.json"
-``` 
- 
+
 # Create a service file
 ```python
 tee /etc/systemd/system/nolusd.service > /dev/null <<EOF
