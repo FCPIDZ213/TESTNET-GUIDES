@@ -35,7 +35,7 @@ go version
 ```
 # Build 
 ```python
-cd $HOME
+cd $HOME && rm -rf babylon
 git clone https://github.com/babylonchain/babylon.git
 cd babylon
 git checkout v0.4.0
