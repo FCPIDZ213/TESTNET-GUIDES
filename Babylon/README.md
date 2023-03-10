@@ -56,6 +56,7 @@ babylond keys add <walletname> --recover
 wget -O $HOME/.babylond/config/genesis.json "https://raw.githubusercontent.com/L0vd/Babylon/main/Node_installation_guide/genesis.json"
 ```
 ## Set seeds and peers
+ ```python
 SEEDS="03ce5e1b5be3c9a81517d415f65378943996c864@18.207.168.204:26656,a5fabac19c732bf7d814cf22e7ffc23113dc9606@34.238.169.221:26656"
 PEERS=""
 sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.babylond/config/config.toml
