@@ -1,3 +1,18 @@
+<p style="font-size:14px" align="right">
+
+
+<p align="center">
+ <img height="200" height="auto" src="https://i.postimg.cc/P5xRc88R/0G-Logo.png">
+
+
+
+
+
+
+
+
+
+
 
 # Official Links
 ### [Official Document](https://blog.0g.ai/blog/testnet-node-operator-and-validator-application-guide)
