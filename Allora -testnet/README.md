@@ -1,39 +1,52 @@
-Allora Network Point Program
-Create a new wallet in Keplr
+![666b297b8d80555ff9a25256_allora-points-phase-2](https://github.com/0xmoei/allora-testnet/assets/90371338/6298f73a-3c58-40a6-9d92-725f36456901)
 
-Connect to the on-chain Point Program Dashboard
+<h1 align="center">Allora Network Point Program</h1>
 
-In Campaigns tab you see 2 tasks, Check them
+> - Create a new wallet in Keplr
+>
+> - Connect to the on-chain Point Program [Dashboard](https://app.allora.network?ref=eyJyZWZlcnJlcl9pZCI6IjVlNmEwMjc5LTcxNjEtNDhmYS04NGM3LWEzYzM0MGM4MGIzNyJ9)
+>
+> - In Campaigns tab you see 2 tasks, Check them
+> 
+> - In the tutorial we run 2 `Price Prediction Workers` with `topic 5` & `topic 6` (Predicting `SOL` price every 24hr & 1hr)
+>
+> - Check the campaigns tasks steps to see what `topic` means
+>
+> - We get points by running a worker
+>
+> - The points are 0 for everyone right now and we are not sure that we are 100% fine
+>
+> - I will update reguarly here, so we make sure that we will gain points when it is fixed
 
-In the tutorial we run 2 Price Prediction Workers with topic 5 & topic 6 (Predicting SOL price every 24hr & 1hr)
+#
 
-Check the campaigns tasks steps to see what topic means
+> Make sure to join off-chain community tasks on [Zealy](https://zealy.io/cw/alloranetwork/invite/IU2cqqMstYG1pEtHTenpn) & [Galxe](https://app.galxe.com/quest/AlloraNetwork) since they are as important as onchain tasks
+>
+> Team will add new tasks in it this week
 
-We get points by running a worker
+#
 
-The points are 0 for everyone right now and we are not sure that we are 100% fine
+<h1 align="center">Price Prediction Worker Node</h1>
 
-I will update reguarly here, so we make sure that we will gain points when it is fixed
+## System Requirements
+![image](https://github.com/0xmoei/allora-testnet/assets/90371338/56f1e0d2-4d59-436c-a0e0-183f9a082de4)
 
-Make sure to join off-chain community tasks on Zealy & Galxe since they are as important as onchain tasks
-
-Team will add new tasks in it this week
-
-Price Prediction Worker Node
-System Requirements
-image
-
-Install dependecies
+## Install dependecies
+```console
 # Install Packages
 sudo apt update & sudo apt upgrade -y
 
 sudo apt install ca-certificates zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev curl git wget make jq build-essential pkg-config lsb-release libssl-dev libreadline-dev libffi-dev gcc screen unzip lz4 -y
+```
+```console
 # Install Python3
 sudo apt install python3
 python3 --version
 
 sudo apt install python3-pip
 pip3 --version
+```
+```console
 # Install Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
@@ -54,6 +67,8 @@ docker-compose --version
 # Docker Permission to user
 sudo groupadd docker
 sudo usermod -aG docker $USER
+```
+```console
 # Install Go
 sudo rm -rf /usr/local/go
 curl -L https://go.dev/dl/go1.22.4.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
@@ -61,14 +76,20 @@ echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
 echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> $HOME/.bash_profile
 source .bash_profile
 go version
-Install Allorad: Wallet
+```
+
+## Install Allorad: Wallet
+```console
 git clone https://github.com/allora-network/allora-chain.git
 
 cd allora-chain && make all
 
 allorad version
-Add Wallet
-You can use your keplr seed-phrase to recover your wallet or create a new one
+```
+
+## Add Wallet
+* You can use your keplr seed-phrase to recover your wallet or create a new one
+```console
 # Recover your wallet with seed-phrase
 allorad keys add testkey --recover
 
@@ -76,18 +97,22 @@ allorad keys add testkey --recover
 
 # Create a new wallet
 allorad keys add testkey
-Get Faucet
-Connect to Allora dashboard to find your Allora address
+```
 
-You can add Allora network to Keplr here
+## Get Faucet
+> Connect to Allora [dashboard](https://app.allora.network?ref=eyJyZWZlcnJlcl9pZCI6IjVlNmEwMjc5LTcxNjEtNDhmYS04NGM3LWEzYzM0MGM4MGIzNyJ9) to find your Allora address
+>
+> You can add Allora network to Keplr [here](https://explorer.edgenet.allora.network/wallet/suggest)
+> 
+> Get uAllo faucet [here](https://faucet.testnet-1.testnet.allora.network/)
 
-Get uAllo faucet here
+![Screenshot_77](https://github.com/0xmoei/allora-testnet/assets/90371338/9e1d6236-ff51-48a1-a9f6-1149c842a4d0)
 
-Screenshot_77
+![Screenshot_76](https://github.com/0xmoei/allora-testnet/assets/90371338/ff27b97d-d04f-42c4-aa1b-3fb666874098)
 
-Screenshot_76
 
-Install Worker
+## Install Worker
+```console
 # Install
 cd $HOME && git clone https://github.com/allora-network/basic-coin-prediction-node
 
@@ -107,17 +132,24 @@ sudo docker run -it --entrypoint=bash -v ./head-data:/data alloranetwork/allora-
 # Create worker keys
 sudo docker run -it --entrypoint=bash -v ./workers/worker-1:/data alloranetwork/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
 sudo docker run -it --entrypoint=bash -v ./workers/worker-2:/data alloranetwork/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
+```
+```console
 # Copy the head-id
 cat head-data/keys/identity
-This is your head-id , you need it in the next step
+```
+> This is your head-id , you need it in the next step
 
-Screenshot_78
+![Screenshot_78](https://github.com/0xmoei/allora-testnet/assets/90371338/5c8e4f77-6214-4f65-83e2-359a39aee966)
 
-Connect to Allora Chain
-Delete and create new docker-compose.yml file
+## Connect to Allora Chain
+* Delete and create new `docker-compose.yml` file
+```console
 rm -rf docker-compose.yml && nano docker-compose.yml
-Copy & Paste the following code in it
-Replace head-id & WALLET_SEED_PHRASE in worker-1 and worker-2 containers
+```
+
+* Copy & Paste the following code in it
+* Replace `head-id` & `WALLET_SEED_PHRASE` in worker-1 and worker-2 containers
+```
 version: '3'
 
 services:
@@ -283,12 +315,17 @@ volumes:
   inference-data:
   workers:
   head-data:
+```
 To save: CTRL+X+Y Enter
 
-Run worker
+## Run worker
+```console
 docker compose up -d --build
-Check your node status
-Check running docker containers
+```
+
+## Check your node status
+### Check running docker containers
+```console
 # Ensure you are in the right directory
 cd $HOME && cd basic-coin-prediction-node
 
@@ -297,13 +334,16 @@ docker compose logs -f worker-1
 
 # Check worker 2 logs
 docker compose logs -f worker-2
-You must have Success: register node Tx Hash in workers 1 & 2 logs Success: register node Tx Hash:=82BF67E2E1247B226B8C5CFCF3E4F41076909ADABF3852C468D087D94BD9FC3B
+```
+> You must have `Success: register node Tx Hash` in workers 1 & 2 logs
+> Success: register node Tx Hash:=82BF67E2E1247B226B8C5CFCF3E4F41076909ADABF3852C468D087D94BD9FC3B
 
-Screenshot_80
+![Screenshot_80](https://github.com/0xmoei/allora-testnet/assets/90371338/cefe126e-4ecb-4af3-9444-4e5e014fed52)
 
-Check Worker node:
+
+### Check Worker node:
 Check topic 1:
-
+```console
 network_height=$(curl -s -X 'GET' 'https://allora-rpc.testnet-1.testnet.allora.network/abci_info?' -H 'accept: application/json' | jq -r .result.response.last_block_height) && \
 curl --location 'http://localhost:6000/api/v1/functions/execute' --header 'Content-Type: application/json' --data '{
     "function_id": "bafybeigpiwl3o73zvvl6dxdqu7zqcub5mhg65jiky2xqb4rdhfmikswzqm",
@@ -329,8 +369,10 @@ curl --location 'http://localhost:6000/api/v1/functions/execute' --header 'Conte
         "timeout": 2
     }
 }' | jq
-Check topic 2:
+```
 
+Check topic 2:
+```console
 network_height=$(curl -s -X 'GET' 'https://allora-rpc.testnet-1.testnet.allora.network/abci_info?' -H 'accept: application/json' | jq -r .result.response.last_block_height) && \
 curl --location 'http://localhost:6000/api/v1/functions/execute' --header 'Content-Type: application/json' --data '{
     "function_id": "bafybeigpiwl3o73zvvl6dxdqu7zqcub5mhg65jiky2xqb4rdhfmikswzqm",
@@ -356,8 +398,9 @@ curl --location 'http://localhost:6000/api/v1/functions/execute' --header 'Conte
         "timeout": 2
     }
 }' | jq
-Response: you will get code: 200 if everything is fine
-
+```
+Response: you will get code: `200` if everything is fine
+```
 {
   "code": "200",
   "request_id": "9660af22-54d0-4219-a1de-3677868b715f",
@@ -506,21 +549,37 @@ Response: you will get code: 200 if everything is fine
     ]
   }
 }
-Check Updater node:
+```
+
+### Check Updater node:
+```console
 curl http://localhost:8000/update
+```
 Response:
-
+```
 0
-Check Inference node:
+```
+
+### Check Inference node:
+```console
 curl http://localhost:8000/inference/ETH
+```
 Response:
-
+```
 {"value":"2564.021586281073"}
-Check Docker containers
-docker ps
-Congratz. Worker is working safely but currently I am not sure that I have done it completely correct as the point system seems to be buggy. I'll update here and on my twitter 0xMoei
+```
 
-🚨Error 408: when checking topic status
+### Check Docker containers
+```console
+docker ps
+```
+
+
+Congratz. Worker is working safely but currently I am not sure that I have done it completely correct as the point system seems to be buggy. I'll update here and on my twitter [0xMoei](https://twitter.com/0xMoei)
+
+
+### 🚨Error 408: when checking topic status
+```console
 # Ensure you are in the right directory
 cd $HOME && cd basic-coin-prediction-node
 
